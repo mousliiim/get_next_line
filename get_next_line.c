@@ -6,7 +6,7 @@
 /*   By: mmourdal <mmourdal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:44:04 by mmourdal          #+#    #+#             */
-/*   Updated: 2022/11/23 01:49:08 by mmourdal         ###   ########.fr       */
+/*   Updated: 2022/11/23 03:38:43 by mmourdal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*get_next_line(int fd)
 	static char	*buffer;
 	char		*line;
 
-	if (BUFFER_SIZE < 1 || fd < 0 || read(fd, 0, 0) < 0)
+	if (BUFFER_SIZE < 0 || fd < 0 || read(fd, NULL, 0) < 0)
 		return (NULL);
 	buffer = ft_read_buffer(fd, buffer);
 	if (!buffer)
@@ -38,8 +38,8 @@ char	*ft_read_buffer(int fd, char *buffer)
 		return (NULL);
 	while (!ft_strchr(buffer, '\n') && readret != 0)
 	{
-		readret = (int)read(fd, str, BUFFER_SIZE);
-		if (readret == -1)
+		readret = read(fd, str, BUFFER_SIZE);
+		if (readret < 0)
 		{
 			free(str);
 			return (NULL);
@@ -57,6 +57,8 @@ char	*ft_get_line(char *buffer)
 	char	*str;
 
 	i = 0;
+	if (!buffer[i])
+		return (NULL);
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
 	str = (char *)malloc(sizeof(char) * (i + 2));
@@ -92,6 +94,8 @@ char	*ft_read_next_buffer(char *buffer)
 		return (NULL);
 	}
 	str = (char *)malloc(sizeof(char) * (ft_strlen(buffer) - i + 1));
+	if (!str)
+		return (NULL);
 	i++;
 	j = 0;
 	while (buffer[i])
