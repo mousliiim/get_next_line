@@ -6,7 +6,7 @@
 /*   By: mmourdal <mmourdal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 23:40:50 by mmourdal          #+#    #+#             */
-/*   Updated: 2022/11/23 02:26:16 by mmourdal         ###   ########.fr       */
+/*   Updated: 2022/11/23 23:54:17 by mmourdal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,13 @@ int	main(int argc, char **argv)
 	int		max;
 	int		i;
 
-	(void)argc;
-	fd = open("text", O_RDONLY);
+	if (argc != 3)
+	{
+		printf("./a.out [Nombre de Ligne] [File]\n");
+		return (0);
+	}
 	max = atoi(argv[1]);
+	fd = open(argv[2], O_RDONLY);
 	i = 0;
 	printf("\n********** GET NEXT LINE : **********\n\n");
 	while (++i <= max)
