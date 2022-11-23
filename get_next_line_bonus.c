@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmourdal <mmourdal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:44:04 by mmourdal          #+#    #+#             */
-/*   Updated: 2022/11/24 00:09:11 by mmourdal         ###   ########.fr       */
+/*   Updated: 2022/11/24 00:38:59 by mmourdal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	*buffer[1048576];
 	char		*line;
 
 	if (!BUFFER_SIZE || BUFFER_SIZE < 0 || fd < 0 || read(fd, NULL, 0) < 0)
 		return (NULL);
-	buffer = ft_read_buffer(fd, buffer);
-	if (!buffer)
+	buffer[fd] = ft_read_buffer(fd, buffer[fd]);
+	if (!buffer[fd])
 		return (NULL);
-	line = ft_get_line(buffer);
-	buffer = ft_read_next_buffer(buffer);
+	line = ft_get_line(buffer[fd]);
+	buffer[fd] = ft_read_next_buffer(buffer[fd]);
 	return (line);
 }
 
