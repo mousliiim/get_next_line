@@ -6,7 +6,7 @@
 /*   By: mmourdal <mmourdal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:44:06 by mmourdal          #+#    #+#             */
-/*   Updated: 2022/11/23 19:32:42 by mmourdal         ###   ########.fr       */
+/*   Updated: 2022/11/30 03:33:56 by mmourdal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 # define GET_NEXT_LINE_H
 
 # include <stdlib.h>
-# include <stdio.h> // REMOVE BEFORE PUSH
 # include <unistd.h>
-# include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 42
 # endif
 
 char	*get_next_line(int fd);

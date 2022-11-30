@@ -6,18 +6,18 @@
 /*   By: mmourdal <mmourdal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:44:04 by mmourdal          #+#    #+#             */
-/*   Updated: 2022/11/24 00:38:59 by mmourdal         ###   ########.fr       */
+/*   Updated: 2022/11/30 18:56:09 by mmourdal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer[1048576];
+	static char	*buffer[1024];
 	char		*line;
 
-	if (!BUFFER_SIZE || BUFFER_SIZE < 0 || fd < 0 || read(fd, NULL, 0) < 0)
+	if (!BUFFER_SIZE || BUFFER_SIZE < 0 || fd < 0)
 		return (NULL);
 	buffer[fd] = ft_read_buffer(fd, buffer[fd]);
 	if (!buffer[fd])
