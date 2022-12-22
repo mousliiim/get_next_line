@@ -6,7 +6,7 @@
 /*   By: mmourdal <mmourdal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:44:01 by mmourdal          #+#    #+#             */
-/*   Updated: 2022/11/24 01:19:30 by mmourdal         ###   ########.fr       */
+/*   Updated: 2022/12/22 02:25:38 by mmourdal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ char	*ft_strjoin(char *buffer, char *str)
 	if (!buffer)
 	{
 		buffer = (char *)malloc(sizeof(char) * 1);
+		if (!buffer)
+			return (NULL);
 		buffer[0] = '\0';
 	}
 	if (!str || !buffer)
